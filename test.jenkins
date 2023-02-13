@@ -6,7 +6,7 @@ pipeline {
     agent { 
          label 'docker-1' 
         }
-    triggers { pollSCM('* * * * *') }
+    //triggers { pollSCM('* * * * *') }  //тригер для запуску по коммиту 
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
@@ -19,7 +19,11 @@ pipeline {
         }
         stage("Second step") {
             steps {
-               sh 'cat /etc/os-release'
+                echo "======= start build images ========"
+                dir ('docker/') {
+                    sh 'docker build .'
+                }
+               //sh 'cat /etc/os-release'
             }
         }
     }

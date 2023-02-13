@@ -21,7 +21,8 @@ pipeline {
             steps {
                 echo "======= start build images ========"
                 dir ('docker/') {
-                    sh 'docker build .'
+                   // sh 'docker build .'
+                   sh 'id'
                 }
                //sh 'cat /etc/os-release'
             }

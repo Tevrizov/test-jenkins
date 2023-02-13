@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage("First step") {
             steps {
-                sh 'cat /etc/os-release'
+                sh 'cat /etc/fstab'
             }
         }
         stage("Second step") {

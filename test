@@ -6,6 +6,7 @@ pipeline { // задаем тон groovy, даем понять что здес�
      options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
+        }
     stages { // здесь определяем какие шаги в пайплайне
         stage('Deploy') { // наш деплой
             steps { // определяем шаги уже самого стейджа

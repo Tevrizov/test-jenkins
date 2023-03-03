@@ -12,19 +12,19 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("First step") {
+        stage("First step test") {
             steps {
                 sh 'cat /etc/fstab'
             }
         }
-        stage("Second step") {
+        stage("Second step biuld images") {
             steps {
                 echo "======= start build images ========"
                 dir ('docker/') {
                     sh 'sudo docker build -t toolbox:latest .'
                    //sh 'id'
                 }
-               //sh 'cat /etc/os-release'
+               sh 'cat /etc/os-release'
             }
         }
   //      stage("Stage docker login to dockerhub") {

@@ -27,16 +27,16 @@ pipeline {
                //sh 'cat /etc/os-release'
             }
         }
-        stage("Stage docker login to dockerhub") {
-            steps {
-                echo "======= start login to dockerhub ========"
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]){
-                    sh """
-                    sudo docker login -u $USERNAME -p $PASSWORD
-                    """
-                }
-            }
-        }
+  //      stage("Stage docker login to dockerhub") {
+   //         steps {
+    //            echo "======= start login to dockerhub ========"
+    //            withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]){
+     //               sh """
+     //               sudo docker login -u $USERNAME -p $PASSWORD
+     //               """
+      //          }
+       //     }
+       // }
 
       //  stage("Stage docker push to dockerhub") {
        //     steps {

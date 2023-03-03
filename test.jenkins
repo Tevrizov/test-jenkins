@@ -12,40 +12,47 @@ pipeline {
         timestamps()
     }
     stages {
-        // stage("First step test") {
-        //     steps {
-        //         sh 'cat /etc/fstab'
-        //     }
-        // }
-        // stage("Second step biuld images") {
-        //     steps {
-        //         echo "======= start build images ========"
-        //         dir ('docker/') {
-        //             sh 'sudo docker build -t etevrizov/toolbox:latest .'
-        //            //sh 'id'
-        //         }
-        //        sh 'cat /etc/os-release'
-        //     }
-        // }
+        stage("First step test") {
+            steps {
+                sh 'cat /etc/fstab'
+            }
+        }
+        stage("Second step biuld images") {
+            steps {
+                echo "======= start build images ========"
+                dir ('docker/') {
+                    sh 'sudo docker build -t etevrizov/toolbox:latest .'
+                }
+               sh 'cat /etc/os-release'
+            }
+        }
+
+
 
         stage("Stage docker login to dockerhub") {
-            steps {
-                echo "======= start login to dockerhub ========"
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_etevrizov', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]){
+           steps {
+            echo "======= start login to dockerhub ========"
+            withCredentials([usernamePassword(credentialsId: 'dockerhub_etevrizov', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]){
                     sh """
                     sudo docker login -u $USERNAME -p $PASSWORD
                     """
+                }
             }
         }
 
-        stage("Stage docker push to dockerhub") {
-            steps {
-                echo "======= start push to dockerhub ========"
-                    sh 'sudo docker build -t toolbox:latest .'
-                
-            }
-        }
-        }
+      //  stage("Stage docker push to dockerhub") {
+       //     steps {
+         //       echo "======= start push to dockerhub ========"
+           //     withDocker
+            //        sh 'sudo docker build -t toolbox:latest .'
+                   //sh 'id'
+              //  }
+           // }
+       // }
+
+
+
+
 
     }
 }

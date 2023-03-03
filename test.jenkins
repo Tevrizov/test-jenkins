@@ -34,7 +34,7 @@ pipeline {
                     sh """
                     sudo docker login -u $USERNAME -p $PASSWORD
                     """
-                }
+                
             }
         }
 
@@ -44,7 +44,7 @@ pipeline {
                     sh """
                     sudo docker push etevrizov/toolbox:latest 
                     """
-                }
+                
             }
         }
 

@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo "======= start build images ========"
                 dir ('docker/') {
-                    sh 'sudo docker build -t toolbox:latest .'
+                    sh 'sudo docker build -t etevrizov/toolbox:latest .'
                    //sh 'id'
                 }
                sh 'cat /etc/os-release'

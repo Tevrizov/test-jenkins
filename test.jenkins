@@ -4,7 +4,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     agent { 
-         label 'docker-1' 
+         label 'docker1' 
         }
     triggers { pollSCM('* * * * *') }  //тригер для запуску по коммиту 
     options {
@@ -12,25 +12,27 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("First step") {
+        stage("First step test") {
             steps {
                 sh 'cat /etc/fstab'
             }
         }
-        stage("Second step") {
+        stage("Second step biuld images") {
             steps {
                 echo "======= start build images ========"
                 dir ('docker/') {
-                    sh 'sudo docker build -t toolbox:latest .'
-                   //sh 'id'
+                    sh 'sudo docker build -t etevrizov/toolbox:latest .'
                 }
                // 'cat /etc/os-release'
             }
         }
+
+
+
         stage("Stage docker login to dockerhub") {
-            steps {
-                echo "======= start login to dockerhub ========"
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]){
+           steps {
+            echo "======= start login to dockerhub ========"
+            withCredentials([usernamePassword(credentialsId: 'dockerhub_etevrizov', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]){
                     sh """
                     sudo docker login -u $USERNAME -p $PASSWORD
                     """
@@ -38,15 +40,17 @@ pipeline {
             }
         }
 
-      //  stage("Stage docker push to dockerhub") {
-       //     steps {
-         //       echo "======= start push to dockerhub ========"
-           //     withDocker
-            //        sh 'sudo docker build -t toolbox:latest .'
-                   //sh 'id'
-              //  }
-           // }
-       // }
+        stage("Stage docker push to dockerhub") {
+            steps {
+                echo "======= start push to dockerhub ========"
+                    sh 'sudo docker push  etevrizov/toolbox:latest '
+                }
+            }
+        
+
+
+
+
 
     }
 }

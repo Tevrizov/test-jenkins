@@ -43,7 +43,8 @@ pipeline {
         stage("Stage docker push to dockerhub") {
             steps {
                 echo "======= start push to dockerhub ========"
-                    sh 'sudo docker push  etevrizov/toolbox:latest '
+                    //sh 'sudo docker tag etevrizov/toolbox 192.168.56.106/toolbox'
+                    sh 'sudo docker push   192.168.56.106:5000/alpine:3.17.2'
                 }
             }
         

@@ -1,11 +1,10 @@
 pipeline {
-  agent { 
-    dockerfile {true
-    label 'docker1'
-    }
-   }
+  agent { dockerfile true }
   stages {
     stage('Test') {
+      agent { 
+         label 'docker1' 
+        }
       steps {
         sh '''
           node --version

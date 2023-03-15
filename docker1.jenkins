@@ -4,6 +4,9 @@ pipeline {
     }
   stages {
     stage('Test') {
+      agent {
+        label 'docker1' 
+      }
       steps {
         sh '''
           node --version

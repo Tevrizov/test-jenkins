@@ -1,0 +1,16 @@
+pipeline {
+  agent { 
+    label 'docker1',
+    dockerfile true 
+    }
+  stages {
+    stage('Test') {
+      steps {
+        sh '''
+          node --version
+          curl --version
+        '''
+      }
+    }
+  }
+}

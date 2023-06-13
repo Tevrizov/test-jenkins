@@ -17,7 +17,7 @@ pipeline {
                 sh 'cat /etc/fstab'
             }
         }
-        stage("Second step biuld images") {
+        stage("Second step build images") {
             steps {
                 echo "======= start build images ========"
                 dir ('docker/') {

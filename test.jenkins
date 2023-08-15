@@ -29,7 +29,7 @@ pipeline {
 
 
 
-        stage("Stage docker login to dockerhub!!!!") {
+        stage("Stage docker login to dockerhub!!!!1111!!!") {
            steps {
             echo "======= start login to dockerhub ========"
             withCredentials([usernamePassword(credentialsId: 'dockerhub_etevrizov', usernameVariable: 'USERNAME', passwordVariable:'PASSWORD')]){
